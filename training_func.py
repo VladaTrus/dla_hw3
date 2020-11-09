@@ -16,7 +16,7 @@ def train_model(model: nn.Module,
     fa = 0
     count = 1
     for input, labels in train_dataloader:
-        print(count)
+#         print(count)
         count += 1
         input = input.to(device)
         labels = labels.to(device)
@@ -57,7 +57,7 @@ def evaluate(model: nn.Module,
     with torch.no_grad():
 
         for input, labels in test_dataloader:
-            print(count)
+#             print(count)
             count += 1
             input = input.to(device)
             labels = labels.to(device)
