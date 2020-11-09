@@ -1,7 +1,9 @@
 from tqdm import tqdm
 from training_func import train_model, evaluate
 from model import KWS_model
+from dataset import make_train_test
 import wandb
+from torch.utils.data import Dataset, DataLoader
 import torch
 import torch.nn as nn
 import torch
@@ -13,6 +15,15 @@ model = KWS_model()
 model.to(device)
 criterion = nn.NLLLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+
+train, test = make_train_test()
+train_dataloader = DataLoader(train,
+                              batch_size=128,
+                              shuffle=True
+                              )
+test_dataloader = DataLoader(test,
+                             batch_size=128
+                             )
 
 CLIP = 1
 N_EPOCHS = 7
